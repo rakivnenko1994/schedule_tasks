@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: Clean up tmp
+      cron:
+        name: Clean tmp
+        weekday: 0
+        hour: 23
+        minute: 59
+        job: "rm -rf /tmp/*"
+        state: present
+
